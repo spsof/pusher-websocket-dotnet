@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Authentication;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -50,7 +51,7 @@ namespace PusherClient
 
                 ChangeState(ConnectionState.Connecting);
 
-                _websocket = new WebSocket(_url)
+                _websocket = new WebSocket(_url, sslProtocols: SslProtocols.Tls12)
                 {
                     EnableAutoSendPing = true,
                     AutoSendPingInterval = 1
